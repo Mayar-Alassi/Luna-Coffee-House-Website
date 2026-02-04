@@ -95,6 +95,9 @@ app.post('/login', (req, res) => {
 // ===== صفحة الأدمن =====
 app.get('/admin', (req, res) => {
     const token = req.query.token;
+    if(!token){
+        return res.redirect('/login');
+    }
     if(token === adminUser.token){
         res.sendFile(path.join(__dirname, 'admin.html'));
     } else {
@@ -162,3 +165,4 @@ app.post('/update-content', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
+
