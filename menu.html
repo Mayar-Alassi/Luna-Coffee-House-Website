@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #4e342e;
+    background:
+        linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),
+        url("https://images.unsplash.com/photo-1509042239860-f550ce710b93");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+body.dark {
+    color: #e8dfd6;
+    background:
+        linear-gradient(rgba(12,10,8,0.65), rgba(12,10,8,0.65)),
+        url("https://images.unsplash.com/photo-1509042239860-f550ce710b93");
+}
+body.dark nav a { color: #e8dfd6; background: rgba(40,32,26,0.45); }
+body.dark nav a:hover { background: rgba(78,52,46,0.35); }
+body.dark nav a.active { background: rgba(78,52,46,0.45); }
+body.dark .menu-card {
+    background: rgba(28,22,18,0.8);
+    border: 1px solid rgba(232,223,214,0.2);
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.35),
+        inset 0 0 40px rgba(0,0,0,0.2);
+}
+body.dark .menu-card h2::after { background: #e8dfd6; }
+body.dark .menu-item { color: rgba(232,223,214,0.9); }
+body.dark .menu-header { color: #e8dfd6; }
+body.dark hr { background: linear-gradient(to right, transparent, #e8dfd6, transparent); }
+
+/* DARK MODE TOGGLE */
+.dark-toggle {
+    position: fixed;
+    right: 16px;
+    top: 16px;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.85);
+    color: #4e342e;
+    box-shadow: 0 6px 16px rgba(78,52,46,0.25);
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+.dark-toggle:hover { transform: translateY(-2px); }
+body.dark .dark-toggle {
+    background: rgba(28,22,18,0.9);
+    color: #e8dfd6;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+}
+
+/* NAV */
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #4e342e;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 8px 18px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(6px);
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background: rgba(78,52,46,0.15);
+    transform: translateY(-2px);
+}
+
+/* SECTIONS */
+section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 70px 20px;
+    text-align: center;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #4e342e, transparent);
+    margin: 25px 0;
+}
+
+/* MENU CARD WRAPPER */
+.MenuCard {
+    display: none;
+    justify-content: center;
+    padding: 40px 20px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.MenuCard.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MENU CARD */
+.menu-card {
+    width: 530px;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
+    border-radius: 22px;
+    padding: 35px 35px;
+    border: 1px solid rgba(78,52,46,0.25);
+    box-shadow:
+        0 15px 40px rgba(78,52,46,0.15),
+        inset 0 0 40px rgba(255,255,255,0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.menu-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 25px 55px rgba(78,52,46,0.25),
+        inset 0 0 50px rgba(255,255,255,0.6);
+}
+
+/* CARD TITLE */
+.menu-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.menu-card h2::after {
+    content: "";
+    width: 60px;
+    height: 2px;
+    background: #4e342e;
+    display: block;
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+/* MENU ITEMS */
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 10px 0;
+    color: rgba(41,15,6,0.85);
+}
+
+/* DOTTED LINE EFFECT */
+.menu-item span:first-child::after {
+    content: "....................................................";
+    margin-left: 8px;
+    color: rgba(41,15,6,0.3);
+    white-space: nowrap;
+}
+.menu-header,
+.menu-item {
+    display: grid;
+    grid-template-columns: 1fr 60px 60px;
+    align-items: center;
+    font-size: 14px;
+}
+
+.menu-header {
+    font-weight: bold;
+    color: #4e342e;
+    margin-bottom: 5px;
+}
+
+.menu-header span {
+    text-align: center;
+}
+
+.menu-item span:nth-child(2),
+.menu-item span:nth-child(3) {
+    text-align: center;
+}
+.menu-item span:first-child {
+    text-align: left;
+    padding-left: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 500px) {
+    .menu-card {
+        width: 100%;
+        padding: 28px 24px;
+    }
+}
+
+/* active nav */
+nav a.active {
+    background: rgba(78,52,46,0.25);
+    box-shadow: 0 5px 15px rgba(78,52,46,0.25);
+}
+</style>
+</head>
+<body>
+<button class="dark-toggle" type="button" onclick="toggleDarkMode()">Dark Mode</button>
+
+<section id="Menu">
+    <h1>Our Menu</h1>
+    <p>“Inspired by the glow of Amman Citadel, a moonlit escape experience.”</p>
+</section>
+
+<nav>
+    <a data-filter="espresso" class="active">ESPRESSOS</a>
+    <a data-filter="specialty">SPECIALTY</a>
+    <a data-filter="classic">CLASSIC</a>
+    <a data-filter="tea">TEA</a>
+    <a data-filter="frappuccino">FRAPPUCCINO</a>
+    <a data-filter="milkshake">MILKSHAKE</a>
+    <a data-filter="smoothie">SMOOTHIES</a>
+    <a data-filter="freshvive">FRESH VIVE</a>
+    <a data-filter="freshjuice">FRESH JUICE</a>
+    <a data-filter="icetea">ICED TEA</a>
+    <a data-filter="icecoffee">ICED COFFEE</a>
+</nav>
+
+<hr>
+
+<section class="MenuCard" data-category="espresso">
+  <div class="menu-card">
+    <h2>ESPRESSOS</h2>
+
+    <!-- Header S / M -->
+    <div class="menu-header">
+      <span></span>
+      <span>S</span>
+      <span>M</span>
+    </div>
+   
+
+    {{ESPRESSOS}}
+
+  </div>
+</section>
+
+
+<!-- SPECIALTY -->
+<section class="MenuCard" data-category="specialty">
+  <div class="menu-card">
+    <h2>SPECIALTY </h2>
+   <div class="menu-header">
+      <span></span>
+      <span>S</span>
+      <span>M</span>
+    </div>
+   {{SPECIALTY}}
+  </div>
+</section>
+
+<!-- CLASSIC -->
+<section class="MenuCard" data-category="classic">
+  <div class="menu-card">
+    <h2>CLASSIC</h2>
+<div class="menu-header">
+      <span></span>
+      <span>S</span>
+      <span>M</span>
+    </div>   
+   {{CLASSIC}}
+  </div>
+</section>
+
+<!-- TEA -->
+<section class="MenuCard" data-category="tea">
+  <div class="menu-card">
+    <h2>TEA</h2>
+<div class="menu-header">
+      <span></span>
+      <span>S</span>
+      <span>M</span>
+    </div>  
+   {{TEA}}
+  
+  </div>
+</section>
+
+<!-- SMOOTHIE -->
+<section class="MenuCard" data-category="smoothie">
+  <div class="menu-card">
+    <h2>SMOOTHIES</h2>
+<div class="menu-header">
+      <span></span>
+      <span>M</span>
+      <span>L</span>
+    </div>   {{SMOOTHIES}}
+  </div>
+</section>
+
+<section class="MenuCard" data-category="frappuccino">
+  <div class="menu-card">
+    <h2>FRAPPUCCINO</h2>
+<div class="menu-header">
+      <span></span>
+      <span>M</span>
+      <span>L</span>
+    </div>    
+   {{FRAPPUCCINO}}
+  
+  </div>
+</section>
+
+<!-- MILKSHAKE -->
+<section class="MenuCard" data-category="milkshake">
+  <div class="menu-card">
+    <h2>MILKSHAKE</h2>
+<div class="menu-header">
+      <span></span>
+      <span>M</span>
+      <span>L</span>
+    </div>  
+   {{MILKSHAKE}}
+  
+  </div>
+</section>
+
+<!-- FRESH VIVE -->
+<section class="MenuCard" data-category="freshvive">
+  <div class="menu-card">
+    <h2>FRESH VIVE</h2>
+<div class="menu-header">
+      <span></span>
+      <span>M</span>
+      <span>L</span>
+    </div>   
+   {{FRESH_VIVE}}
+  
+  </div>
+</section>
+
+<!-- FRESH JUICE -->
+<section class="MenuCard" data-category="freshjuice">
+  <div class="menu-card">
+    <h2>FRESH JUICE</h2>
+<div class="menu-header">
+      <span></span>
+      <span>M</span>
+      <span>L</span>
+    </div>    
+   {{FRESH_JUICE}}
+  </div>
+</section>
+
+<!-- ICED TEA -->
+<section class="MenuCard" data-category="icetea">
+  <div class="menu-card">
+    <h2>ICED TEA</h2>
+<div class="menu-header">
+      <span></span>
+      <span>M</span>
+      <span>L</span>
+    </div>    
+   {{ICED_TEA}}
+  </div>
+</section>
+
+<!-- ICED COFFEE -->
+<section class="MenuCard" data-category="icecoffee">
+  <div class="menu-card">
+    <h2>ICED COFFEE</h2>
+<div class="menu-header">
+      <span></span>
+      <span>M</span>
+      <span>L</span>
+    </div>  
+  
+   {{ICED_COFFEE}}
+  </div>
+</section>
+
+
+<script>
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+const links = document.querySelectorAll("nav a");
+const cards = document.querySelectorAll(".MenuCard");
+
+function showCategory(category) {
+    cards.forEach(card => {
+        if (card.dataset.category === category) {
+            card.style.display = "flex";
+            setTimeout(() => card.classList.add("show"), 50);
+        } else {
+            card.classList.remove("show");
+            card.style.display = "none";
+        }
+    });
+}
+
+links.forEach(link => {
+    link.addEventListener("click", e => {
+        e.preventDefault();
+        links.forEach(l => l.classList.remove("active"));
+        link.classList.add("active");
+        showCategory(link.dataset.filter);
+    });
+});
+
+
+showCategory("espresso");
+</script>
+
+</body>
+</html>

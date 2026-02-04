@@ -1,0 +1,589 @@
+{
+  "lunaText": "LUNA Coffee House is a calm and welcoming café designed for people who appreciate quality coffee and a peaceful atmosphere. Our mission is to offer the finest coffee experience, blending traditional flavors with a modern, cozy ambiance.LUNA Coffee House is a calm and welcoming café designed for people who appreciate quality coffee and a peaceful atmosphere. Our mission is to offer the finest coffee experience, blending traditional flavors with a modern, cozy ambiance.LUNA Coffee House is a calm and welcoming café designed for people who appreciate quality coffee and a peaceful atmosphere. Our mission is to offer the finest coffee experience, blending traditional flavors with a modern, cozy ambiance.LUNA Coffee House is a calm and welcoming café designed for people who appreciate quality coffee and a peaceful atmosphere. Our mission is to offer the finest coffee experience, blending traditional flavors with a modern, cozy ambiance.",
+  "lunaImage1": "/ii.jpeg",
+  "lunaImage2": "/yyy.jpeg",
+  "lunaImage3": "/sss.jpeg",
+  "email": "info@lunacoffeehouse.com",
+  "phone": "+962XXXXXXXXX",
+  "instagram": "@lunecoffeehouse",
+  "ESPRESSOS": {
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "items": [
+      {
+        "name": "Single Espresso",
+        "prices": [
+          "$2.25",
+          "-"
+        ]
+      },
+      {
+        "name": "Double Espresso",
+        "prices": [
+          "$2.50",
+          "-"
+        ]
+      },
+      {
+        "name": "Brewed Coffee",
+        "prices": [
+          "$2.75",
+          "$3.25"
+        ]
+      },
+      {
+        "name": "Caffè Americano",
+        "prices": [
+          "$2.75",
+          "$3.25"
+        ]
+      },
+      {
+        "name": "Caffè Latte",
+        "prices": [
+          "$3.25",
+          "$3.75"
+        ]
+      }
+    ]
+  },
+  "SPECIALTY": {
+    "sizes": [
+      "S",
+      "M"
+    ],
+    "items": [
+      {
+        "name": "V60",
+        "prices": [
+          "$4.00",
+          "-"
+        ]
+      },
+      {
+        "name": "Aeropress",
+        "prices": [
+          "$4.00",
+          "-"
+        ]
+      },
+      {
+        "name": "Chemex",
+        "prices": [
+          "$6.00",
+          "-"
+        ]
+      },
+      {
+        "name": "Turkish Single",
+        "prices": [
+          "$2.50",
+          "-"
+        ]
+      },
+      {
+        "name": "Turkish Double",
+        "prices": [
+          "$3.00",
+          "-"
+        ]
+      }
+    ]
+  },
+  "CLASSIC": {
+    "items": [
+      {
+        "name": "Latte",
+        "prices": [
+          "$4.25",
+          "$4.75"
+        ]
+      },
+      {
+        "name": "Caramel Macchiato",
+        "prices": [
+          "$4.25",
+          "$4.75"
+        ]
+      },
+      {
+        "name": "White Mocha",
+        "prices": [
+          "$4.25",
+          "$4.75"
+        ]
+      },
+      {
+        "name": "Mocha",
+        "prices": [
+          "$4.25",
+          "$4.75"
+        ]
+      },
+      {
+        "name": "Spanish Latte",
+        "prices": [
+          "$4.25",
+          "$4.75"
+        ]
+      },
+      {
+        "name": "Flat White",
+        "prices": [
+          "$3.00",
+          "$4.75"
+        ]
+      },
+      {
+        "name": "Salted Caramel",
+        "prices": [
+          "$4.25",
+          "$4.75"
+        ]
+      },
+      {
+        "name": "Hot Chocolate",
+        "prices": [
+          "$2.75",
+          "$4.40"
+        ]
+      },
+      {
+        "name": "Cappuccino",
+        "prices": [
+          "$3.25",
+          "$3.75"
+        ]
+      }
+    ]
+  },
+  "TEA": {
+    "sizes": [
+      "M",
+      "L"
+    ],
+    "items": [
+      {
+        "name": "Classic Tea",
+        "prices": [
+          "$3.25",
+          "$3.75"
+        ]
+      },
+      {
+        "name": "Chai Latte",
+        "prices": [
+          "$4.00 ",
+          "$4.50 "
+        ]
+      },
+      {
+        "name": "Matcha Tea",
+        "prices": [
+          "$4.50",
+          "$4.50"
+        ]
+      }
+    ]
+  },
+  "SMOOTHIES": {
+    "sizes": [
+      "M",
+      "L"
+    ],
+    "items": [
+      {
+        "name": "Luna Smoothie",
+        "prices": [
+          "$4.50",
+          "$5.25 "
+        ]
+      },
+      {
+        "name": "Melocotón Smoothie",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Peach Smoothie",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Mixed Berry Smoothie",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Strawberry Smoothie",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Mango Smoothie",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Raspberry Smoothie",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Passion Fruit Smoothie",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Piña Colada Smoothie",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      }
+    ]
+  },
+  "FRAPPUCCINO": {
+    "sizes": [
+      "M",
+      "L"
+    ],
+    "items": [
+      {
+        "name": "Luna Frappuccino",
+        "prices": [
+          "$4.75",
+          "$5.25  "
+        ]
+      },
+      {
+        "name": "Caramel Frappuccino",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Vanilla Frappuccino",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Vanilla Frappuccino",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "White Mocha Frapp",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Mocha Frappuccino",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Salted Caramel Frapp",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Chocolate Frappuccino",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      }
+    ]
+  },
+  "MILKSHAKE": {
+    "sizes": [
+      "M",
+      "L"
+    ],
+    "items": [
+      {
+        "name": "Luna Milkshake",
+        "prices": [
+          "$4.50 ",
+          "$5.25  "
+        ]
+      },
+      {
+        "name": "Peach Milkshake",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Mixed Berry Milkshake",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Strawberry Milkshake",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Mango Milkshake",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Raspberry Milkshake",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Passion Fruit Milkshake",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      }
+    ]
+  },
+  "FRESH_VIVE": {
+    "sizes": [
+      "M",
+      "L"
+    ],
+    "items": [
+      {
+        "name": "Green Vive",
+        "prices": [
+          "$4.50 ",
+          "$5.00  "
+        ]
+      },
+      {
+        "name": "Mixed Vive",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Strawberry Vive",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Passion Fruit Vive",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Peach Vive",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Mango Vive",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      }
+    ]
+  },
+  "FRESH_JUICE": {
+    "sizes": [
+      "M",
+      "L"
+    ],
+    "items": [
+      {
+        "name": "Orange Juice",
+        "prices": [
+          "$4.25 ",
+          "$4.75  "
+        ]
+      },
+      {
+        "name": "Strawberry Juice",
+        "prices": [
+          "$4.25",
+          "$4.75 "
+        ]
+      },
+      {
+        "name": "Lemon Juice",
+        "prices": [
+          "$4.25",
+          "$4.75 "
+        ]
+      },
+      {
+        "name": "Mango Juice",
+        "prices": [
+          "$4.25",
+          "$4.75"
+        ]
+      }
+    ]
+  },
+  "ICED_TEA": {
+    "sizes": [
+      "M",
+      "L"
+    ],
+    "items": [
+      {
+        "name": "Ice Tea",
+        "prices": [
+          "$4.25 ",
+          "$4.75  "
+        ]
+      },
+      {
+        "name": "Luna Iced Tea",
+        "prices": [
+          "$4.50",
+          "$5.00 "
+        ]
+      },
+      {
+        "name": "Iced Matcha",
+        "prices": [
+          "$4.25",
+          "$4.75 "
+        ]
+      },
+      {
+        "name": "Iced Chai Latte",
+        "prices": [
+          "$4.50",
+          "$5.00"
+        ]
+      },
+      {
+        "name": "Nitro Tea",
+        "prices": [
+          "$4.50",
+          "$5.25"
+        ]
+      }
+    ]
+  },
+  "ICED_COFFEE": {
+    "sizes": [
+      "M",
+      "L"
+    ],
+    "items": [
+      {
+        "name": "Luna Coffee",
+        "prices": [
+          "$4.75",
+          "$5.25  "
+        ]
+      },
+      {
+        "name": "Iced Caramel Macchiato",
+        "prices": [
+          "$4.70",
+          "$5.00  "
+        ]
+      },
+      {
+        "name": "Iced Latte",
+        "prices": [
+          "$3.75",
+          "$4.35"
+        ]
+      },
+      {
+        "name": "Iced Moch",
+        "prices": [
+          "$4.75",
+          "$5.00  "
+        ]
+      },
+      {
+        "name": "Iced White Mocha",
+        "prices": [
+          "$4.75 ",
+          "$5.00"
+        ]
+      },
+      {
+        "name": "Iced Shaken Espresso",
+        "prices": [
+          "$3.90",
+          "- "
+        ]
+      },
+      {
+        "name": "Iced Americano",
+        "prices": [
+          "$3.25",
+          "$3.75"
+        ]
+      },
+      {
+        "name": "Iced Spanish Latte",
+        "prices": [
+          "$4.75 ",
+          "$5.25"
+        ]
+      },
+      {
+        "name": "Iced Salted Caramel",
+        "prices": [
+          "$4.75 ",
+          "$5.25 "
+        ]
+      }
+    ]
+  },
+  "story": {
+    "text": "LUNA Coffee House is a calm and welcoming café designed for people who appreciate quality coffee and a peaceful atmosphere. Our mission is to offer the finest coffee experience, blending traditional flavors with a modern, cozy ambiance.LUNA Coffee House is a calm and welcoming café designed for people who appreciate quality coffee and a peaceful atmosphere. Our mission is to offer the finest coffee experience, blending traditional flavors with a modern, cozy ambiance.LUNA Coffee House is a calm and welcoming café designed for people who appreciate quality coffee and a peaceful atmosphere. Our mission is to offer the finest coffee experience, blending traditional flavors with a modern, cozy ambiance.LUNA Coffee House is a calm and welcoming café designed for people who appreciate quality coffee and a peaceful atmosphere. Our mission is to offer the finest coffee experience, blending traditional flavors with a modern, cozy ambiance."
+  },
+  "contact": {
+    "phone": "+962XXXXXXXXX"
+  }
+}
