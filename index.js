@@ -54,6 +54,9 @@ app.get('/', (req, res) => {
 
     res.send(html);
 });
+app.get('/admin', (req, res) => {
+    res.sendFile(__dirname + '/admin.html');
+});
 
 
 // ===== endpoint لجلب محتوى luna (للاستخدام من admin) =====
