@@ -65,7 +65,23 @@
         text-decoration: none;
         font-weight: 500;
     }
-</style>
+@media (max-width: 600px) {
+    body {
+        padding: 20px;
+        height: auto;
+    }
+
+    .login-container {
+        width: 100%;
+        max-width: 360px;
+        padding: 28px 24px;
+    }
+
+    .login-container h2 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+}</style>
 </head>
 <body>
     <div class="login-container">
@@ -79,3 +95,4 @@
     </div>
 </body>
 </html>
+

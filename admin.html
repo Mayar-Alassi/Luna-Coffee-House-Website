@@ -15,7 +15,7 @@ label { font-weight: bold; }
 textarea { resize: vertical; }
 </style>
 </head>
-<body>
+<body><div class="page-wrap">
 
 <h1>Admin Panel - LUNA Coffee House</h1>
 
@@ -68,13 +68,31 @@ textarea { resize: vertical; }
 </form>
 
 <div id="response" class="mt-3"></div>
-
+ <div class="card">
+    <h3>Visit / Location</h3>
+    <div class="mb-3">
+        <label for="address">Address:</label>
+        <input type="text" class="form-control" id="address" name="address">
+    </div>
+    <div class="mb-3">
+        <label for="hours">Opening Hours:</label>
+        <input type="text" class="form-control" id="hours" name="hours" placeholder="e.g. 7:00 AM – 1:00 AM, Open All Days">
+    </div>
+    <div class="mb-3">
+        <label for="video">Hero Video (MP4 URL):</label>
+        <input type="text" class="form-control" id="video" name="video" placeholder="/video.mp4">
+    </div>
+    <div class="mb-3">
+        <label for="mapLink">Map Link:</label>
+        <input type="text" class="form-control" id="mapLink" name="mapLink" placeholder="https://maps.app.goo.gl/...">
+    </div>
+</div>
 <script>
 const form = document.getElementById('adminForm');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // جمع البيانات
+  
     const storyImagesRaw = document.getElementById('storyImages').value.trim();
     const storyImages = storyImagesRaw
         ? storyImagesRaw.split(',').map(s => s.trim()).filter(Boolean)
@@ -111,12 +129,12 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-// تحميل البيانات الحالية عند فتح الصفحة
 window.addEventListener('DOMContentLoaded', async () => {
     const res = await fetch('/menu'); // نستخدم نفس endpoint لجلب content.json
     const contentRes = await fetch('/luna'); // لجلب النصوص والصور
 });
 </script>
 
-</body>
+</div></body>
 </html>
+

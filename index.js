@@ -42,16 +42,21 @@ app.get('/', (req, res) => {
     const handleNoAt = handle.startsWith('@') ? handle.slice(1) : handle;
     const instagramLink = handleNoAt ? `https://instagram.com/${handleNoAt}` : '#';
 
-    html = html
-        .replace('{{LUNATEXT}}', content.lunaText || '')
-        .replace('{{lunaImage1}}', content.lunaImage1 || '')
-        .replace('{{lunaImage2}}', content.lunaImage2 || '')
-        .replace('{{lunaImage3}}', content.lunaImage3 || '')
-        .replace(/{{EMAIL}}/g, content.email || '')
-        .replace(/{{PHONE}}/g, content.phone || '')
-        .replace(/{{INSTAGRAM}}/g, handle || '')
-        .replace(/{{INSTAGRAM_LINK}}/g, instagramLink || '#');
-
+    
+      html = html
+    .replace('{{LUNATEXT}}', content.lunaText || '')
+    .replace('{{lunaImage1}}', content.lunaImage1 || '')
+    .replace('{{lunaImage2}}', content.lunaImage2 || '')
+    .replace('{{lunaImage3}}', content.lunaImage3 || '')
+    .replace(/{{EMAIL}}/g, content.email || '')
+    .replace(/{{PHONE}}/g, content.phone || '')
+    .replace(/{{INSTAGRAM}}/g, content.instagram || '')
+    .replace(/{{INSTAGRAM_LINK}}/g, instagramLink || '#')
+    // الحقول الجديدة
+    .replace('{{address}}', content.address || '')
+    .replace('{{hours}}', content.hours || '')
+    .replace('{{video}}', content.video || '')
+    .replace('{{maplink}}', content.mapLink || '#');
     res.send(html);
 });
 
@@ -85,6 +90,8 @@ app.get('/login', (req, res) => {
 // التحقق من login
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
+    console.log('Login attempt:', { username, hasPassword: !!password });
+    console.log('Expected:', { user: adminUser.username, hasPassword: !!adminUser.password });
     if(username === adminUser.username && password === adminUser.password){
         res.redirect(`/admin?token=${adminUser.token}`);
     } else {
@@ -116,9 +123,11 @@ app.post('/update-content', (req, res) => {
     const content = JSON.parse(fs.readFileSync('content.json', 'utf-8'));
 
     // تحديث الصفحة الرئيسية
-    if(req.body.lunaText) content.lunaText = req.body.lunaText;
-    if(req.body.storyText) content.lunaText = req.body.storyText;
-
+   // تحديث الصفحة الرئيسية - حقول جديدة
+if(req.body.address) content.address = req.body.address;
+if(req.body.hours) content.hours = req.body.hours;
+if(req.body.video) content.video = req.body.video;
+if(req.body.mapLink) content.mapLink = req.body.mapLink;
     if(Array.isArray(req.body.storyImages)) {
         const cleanedImages = req.body.storyImages
             .map(img => String(img || '').trim())

@@ -3,113 +3,198 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<title>LUNA Menu</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <style>
+:root {
+    --bg-base: #f3e9dd;
+    --bg-accent: #ead9c8;
+    --nude: #e2c7b2;
+    --sand: #d2b49c;
+    --ink: #3a2c24;
+    --muted: #8a6f5b;
+    --card: #fbf5ee;
+    --frame: #d9c2ab;
+    --shadow: rgba(58, 44, 36, 0.18);
+}
+
+* { box-sizing: border-box; }
+
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
-    color: #4e342e;
-    background:
-        linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)),
-        url("https://images.unsplash.com/photo-1509042239860-f550ce710b93");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    font-family: 'Josefin Sans', sans-serif;
+    color: var(--ink);
+    background: radial-gradient(1200px 600px at 10% -10%, #f7efe6 0%, transparent 60%),
+                radial-gradient(900px 500px at 90% 10%, #f0e1d4 0%, transparent 55%),
+                linear-gradient(180deg, var(--bg-base), var(--bg-accent));
+    overflow-x: hidden;
 }
-body.dark {
-    color: #e8dfd6;
-    background:
-        linear-gradient(rgba(12,10,8,0.65), rgba(12,10,8,0.65)),
-        url("https://images.unsplash.com/photo-1509042239860-f550ce710b93");
-}
-body.dark nav a { color: #e8dfd6; background: rgba(40,32,26,0.45); }
-body.dark nav a:hover { background: rgba(78,52,46,0.35); }
-body.dark nav a.active { background: rgba(78,52,46,0.45); }
-body.dark .menu-card {
-    background: rgba(28,22,18,0.8);
-    border: 1px solid rgba(232,223,214,0.2);
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.35),
-        inset 0 0 40px rgba(0,0,0,0.2);
-}
-body.dark .menu-card h2::after { background: #e8dfd6; }
-body.dark .menu-item { color: rgba(232,223,214,0.9); }
-body.dark .menu-header { color: #e8dfd6; }
-body.dark hr { background: linear-gradient(to right, transparent, #e8dfd6, transparent); }
 
-/* DARK MODE TOGGLE */
-.dark-toggle {
+.art-bg {
     position: fixed;
-    right: 16px;
-    top: 16px;
-    border: none;
-    padding: 10px 14px;
-    border-radius: 999px;
-    font-size: 12px;
-    letter-spacing: 0.6px;
-    cursor: pointer;
-    background: rgba(255,255,255,0.85);
-    color: #4e342e;
-    box-shadow: 0 6px 16px rgba(78,52,46,0.25);
-    transition: transform 0.2s ease, background 0.3s ease;
-}
-.dark-toggle:hover { transform: translateY(-2px); }
-body.dark .dark-toggle {
-    background: rgba(28,22,18,0.9);
-    color: #e8dfd6;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        repeating-linear-gradient(90deg, rgba(210,180,156,0.22), rgba(210,180,156,0.22) 1px, transparent 1px, transparent 32px),
+        repeating-linear-gradient(0deg, rgba(226,199,178,0.2), rgba(226,199,178,0.2) 1px, transparent 1px, transparent 32px);
+    opacity: 0.5;
 }
 
-/* NAV */
+.container-max {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Header */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(243, 233, 221, 0.9);
+    border-bottom: 1px solid rgba(210, 180, 156, 0.55);
+    transition: background 0.6s ease, box-shadow 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+header.shrink {
+    background: rgba(243, 233, 221, 0.98);
+    box-shadow: 0 14px 30px rgba(58,44,36,0.18);
+}
+
 nav {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
     flex-wrap: wrap;
-    gap: 6px;
 }
 
 nav a {
+    color: var(--ink);
     text-decoration: none;
-    color: #4e342e;
-    font-size: 11px;
-    letter-spacing: 1px;
-    padding: 8px 18px;
-    border-radius: 30px;
-    background: rgba(255,255,255,0.25);
-    backdrop-filter: blur(6px);
-    transition: all 0.3s ease;
+    letter-spacing: 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 6px;
+    transition: color 0.2s ease, text-shadow 0.3s ease;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: var(--muted);
+    transition: width 0.3s ease;
 }
 
 nav a:hover {
-    background: rgba(78,52,46,0.15);
-    transform: translateY(-2px);
+    color: #2f241d;
+    text-shadow: 0 0 8px rgba(58,44,36,0.3);
 }
 
-/* SECTIONS */
-section {
-    max-width: 1200px;
-    margin: auto;
-    padding: 70px 20px;
+nav a:hover::after { width: 100%; }
+
+.logo {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    letter-spacing: 6px;
+    color: #3a2a20;
+}
+
+/* Hero */
+.hero {
+    padding: 90px 0 50px;
     text-align: center;
 }
 
-hr {
-    border: none;
-    height: 1px;
-    background: linear-gradient(to right, transparent, #4e342e, transparent);
-    margin: 25px 0;
+.hero .tagline {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 12px;
+    color: var(--muted);
 }
 
-/* MENU CARD WRAPPER */
+.hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 48px;
+    letter-spacing: 4px;
+    margin: 16px 0 12px;
+}
+
+.hero p {
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.9;
+    color: #4c3b30;
+}
+
+/* Sections */
+.section {
+    padding: 40px 0 80px;
+}
+
+.divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--sand), transparent);
+    margin: 24px 0 36px;
+}
+
+/* Menu Tabs */
+.menu-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.menu-tabs a {
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid rgba(210,180,156,0.6);
+    background: rgba(251,245,238,0.9);
+    padding: 8px 16px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    box-shadow: 0 6px 14px rgba(58,44,36,0.12);
+}
+
+.menu-tabs a:hover {
+    background: #f2e2d3;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(58,44,36,0.18);
+}
+
+.menu-tabs a.active {
+    background: var(--nude);
+    color: #2d201a;
+    box-shadow: 0 12px 28px rgba(58,44,36,0.22);
+}
+
+/* Menu Cards */
 .MenuCard {
     display: none;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 30px 0;
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(24px);
     transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
@@ -119,62 +204,38 @@ hr {
     transform: translateY(0);
 }
 
-/* MENU CARD */
 .menu-card {
-    width: 530px;
-    background: rgba(255,255,255,0.75);
-    backdrop-filter: blur(10px);
-    border-radius: 22px;
-    padding: 35px 35px;
-    border: 1px solid rgba(78,52,46,0.25);
-    box-shadow:
-        0 15px 40px rgba(78,52,46,0.15),
-        inset 0 0 40px rgba(255,255,255,0.4);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    width: min(620px, 92vw);
+    background: var(--card);
+    border: 1px solid var(--frame);
+    padding: 30px 32px;
+    position: relative;
+    box-shadow: 0 18px 40px var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .menu-card:hover {
     transform: translateY(-6px);
-    box-shadow:
-        0 25px 55px rgba(78,52,46,0.25),
-        inset 0 0 50px rgba(255,255,255,0.6);
+    box-shadow: 0 28px 60px rgba(58, 44, 36, 0.25);
 }
 
-/* CARD TITLE */
-.menu-card h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-    position: relative;
-}
-
-.menu-card h2::after {
+.menu-card::before,
+.menu-card::after {
     content: "";
-    width: 60px;
-    height: 2px;
-    background: #4e342e;
-    display: block;
-    margin: 12px auto 0;
-    border-radius: 2px;
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(210,180,156,0.6);
+    pointer-events: none;
 }
 
-/* MENU ITEMS */
-.menu-item {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    padding: 10px 0;
-    color: rgba(41,15,6,0.85);
+.menu-card h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    letter-spacing: 3px;
+    text-align: center;
+    margin-bottom: 22px;
 }
 
-/* DOTTED LINE EFFECT */
-.menu-item span:first-child::after {
-    content: "....................................................";
-    margin-left: 8px;
-    color: rgba(41,15,6,0.3);
-    white-space: nowrap;
-}
 .menu-header,
 .menu-item {
     display: grid;
@@ -184,220 +245,213 @@ hr {
 }
 
 .menu-header {
-    font-weight: bold;
-    color: #4e342e;
-    margin-bottom: 5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    margin-bottom: 6px;
 }
 
-.menu-header span {
-    text-align: center;
+.menu-item {
+    padding: 10px 0;
+    color: #3c2d26;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.menu-item:hover {
+    color: #2a1f19;
+    transform: translateX(2px);
+}
+
+.menu-item span:first-child {
+    text-align: left;
 }
 
 .menu-item span:nth-child(2),
-.menu-item span:nth-child(3) {
+.menu-item span:nth-child(3),
+.menu-header span:nth-child(2),
+.menu-header span:nth-child(3) {
     text-align: center;
 }
-.menu-item span:first-child {
-    text-align: left;
-    padding-left: 0;
+
+.menu-item span:first-child::after {
+    content: "....................................................";
+    margin-left: 8px;
+    color: rgba(90,70,58,0.35);
+    white-space: nowrap;
 }
 
-/* RESPONSIVE */
-@media (max-width: 500px) {
-    .menu-card {
-        width: 100%;
-        padding: 28px 24px;
-    }
+.reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: reveal 1.2s ease forwards;
 }
 
-/* active nav */
-nav a.active {
-    background: rgba(78,52,46,0.25);
-    box-shadow: 0 5px 15px rgba(78,52,46,0.25);
+.reveal.delay-1 { animation-delay: 0.15s; }
+.reveal.delay-2 { animation-delay: 0.35s; }
+
+@keyframes reveal {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 700px) {
+    nav { flex-direction: column; gap: 12px; }
+    .hero h1 { font-size: 36px; }
+    .menu-card { padding: 24px; }
 }
 </style>
 </head>
 <body>
-<button class="dark-toggle" type="button" onclick="toggleDarkMode()">Dark Mode</button>
+<div class="art-bg"></div>
 
-<section id="Menu">
-    <h1>Our Menu</h1>
-    <p>“Inspired by the glow of Amman Citadel, a moonlit escape experience.”</p>
-</section>
-
-<nav>
-    <a data-filter="espresso" class="active">ESPRESSOS</a>
-    <a data-filter="specialty">SPECIALTY</a>
-    <a data-filter="classic">CLASSIC</a>
-    <a data-filter="tea">TEA</a>
-    <a data-filter="frappuccino">FRAPPUCCINO</a>
-    <a data-filter="milkshake">MILKSHAKE</a>
-    <a data-filter="smoothie">SMOOTHIES</a>
-    <a data-filter="freshvive">FRESH VIVE</a>
-    <a data-filter="freshjuice">FRESH JUICE</a>
-    <a data-filter="icetea">ICED TEA</a>
-    <a data-filter="icecoffee">ICED COFFEE</a>
-</nav>
-
-<hr>
-
-<section class="MenuCard" data-category="espresso">
-  <div class="menu-card">
-    <h2>ESPRESSOS</h2>
-
-    <!-- Header S / M -->
-    <div class="menu-header">
-      <span></span>
-      <span>S</span>
-      <span>M</span>
+<header>
+    <div class="container-max">
+        <nav>
+            <div class="logo">LUNA</div>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/menu">Menu</a>
+                <a href="/#contact">Contact</a>
+            </div>
+        </nav>
     </div>
-   
+</header>
 
-    {{ESPRESSOS}}
-
-  </div>
+<section class="hero container-max">
+    <div class="tagline reveal">Art Deco Menu</div>
+    <h1 class="reveal delay-1">Our Menu</h1>
+    <p class="reveal delay-2">Inspired by the glow of Amman Citadel, a moonlit escape experience.</p>
 </section>
 
-
-<!-- SPECIALTY -->
-<section class="MenuCard" data-category="specialty">
-  <div class="menu-card">
-    <h2>SPECIALTY </h2>
-   <div class="menu-header">
-      <span></span>
-      <span>S</span>
-      <span>M</span>
+<section class="section container-max">
+    <div class="menu-tabs">
+        <a data-filter="espresso" class="active">Espressos</a>
+        <a data-filter="specialty">Specialty</a>
+        <a data-filter="classic">Classic</a>
+        <a data-filter="tea">Tea</a>
+        <a data-filter="frappuccino">Frappuccino</a>
+        <a data-filter="milkshake">Milkshake</a>
+        <a data-filter="smoothie">Smoothies</a>
+        <a data-filter="freshvive">Fresh Vive</a>
+        <a data-filter="freshjuice">Fresh Juice</a>
+        <a data-filter="icetea">Iced Tea</a>
+        <a data-filter="icecoffee">Iced Coffee</a>
     </div>
-   {{SPECIALTY}}
-  </div>
+
+    <hr class="divider">
+
+    
+    <section class="MenuCard" data-category="espresso">
+        <div class="menu-card">
+            <h2>ESPRESSOS</h2>
+            <div class="menu-header"><span></span><span>S</span><span>M</span></div>
+            {{ESPRESSOS}}
+        </div>
+    </section>
+
+    <!-- SPECIALTY -->
+    <section class="MenuCard" data-category="specialty">
+        <div class="menu-card">
+            <h2>SPECIALTY</h2>
+            <div class="menu-header"><span></span><span>S</span><span>M</span></div>
+            {{SPECIALTY}}
+        </div>
+    </section>
+
+    <!-- CLASSIC -->
+    <section class="MenuCard" data-category="classic">
+        <div class="menu-card">
+            <h2>CLASSIC</h2>
+            <div class="menu-header"><span></span><span>S</span><span>M</span></div>
+            {{CLASSIC}}
+        </div>
+    </section>
+
+    <!-- TEA -->
+    <section class="MenuCard" data-category="tea">
+        <div class="menu-card">
+            <h2>TEA</h2>
+            <div class="menu-header"><span></span><span>S</span><span>M</span></div>
+            {{TEA}}
+        </div>
+    </section>
+
+    <!-- FRAPPUCCINO -->
+    <section class="MenuCard" data-category="frappuccino">
+        <div class="menu-card">
+            <h2>FRAPPUCCINO</h2>
+            <div class="menu-header"><span></span><span>M</span><span>L</span></div>
+            {{FRAPPUCCINO}}
+        </div>
+    </section>
+
+    <!-- MILKSHAKE -->
+    <section class="MenuCard" data-category="milkshake">
+        <div class="menu-card">
+            <h2>MILKSHAKE</h2>
+            <div class="menu-header"><span></span><span>M</span><span>L</span></div>
+            {{MILKSHAKE}}
+        </div>
+    </section>
+
+    <!-- SMOOTHIE -->
+    <section class="MenuCard" data-category="smoothie">
+        <div class="menu-card">
+            <h2>SMOOTHIES</h2>
+            <div class="menu-header"><span></span><span>M</span><span>L</span></div>
+            {{SMOOTHIES}}
+        </div>
+    </section>
+
+    <!-- FRESH VIVE -->
+    <section class="MenuCard" data-category="freshvive">
+        <div class="menu-card">
+            <h2>FRESH VIVE</h2>
+            <div class="menu-header"><span></span><span>M</span><span>L</span></div>
+            {{FRESH_VIVE}}
+        </div>
+    </section>
+
+    <!-- FRESH JUICE -->
+    <section class="MenuCard" data-category="freshjuice">
+        <div class="menu-card">
+            <h2>FRESH JUICE</h2>
+            <div class="menu-header"><span></span><span>M</span><span>L</span></div>
+            {{FRESH_JUICE}}
+        </div>
+    </section>
+
+    <!-- ICED TEA -->
+    <section class="MenuCard" data-category="icetea">
+        <div class="menu-card">
+            <h2>ICED TEA</h2>
+            <div class="menu-header"><span></span><span>M</span><span>L</span></div>
+            {{ICED_TEA}}
+        </div>
+    </section>
+
+    <!-- ICED COFFEE -->
+    <section class="MenuCard" data-category="icecoffee">
+        <div class="menu-card">
+            <h2>ICED COFFEE</h2>
+            <div class="menu-header"><span></span><span>M</span><span>L</span></div>
+            {{ICED_COFFEE}}
+        </div>
+    </section>
 </section>
-
-<!-- CLASSIC -->
-<section class="MenuCard" data-category="classic">
-  <div class="menu-card">
-    <h2>CLASSIC</h2>
-<div class="menu-header">
-      <span></span>
-      <span>S</span>
-      <span>M</span>
-    </div>   
-   {{CLASSIC}}
-  </div>
-</section>
-
-<!-- TEA -->
-<section class="MenuCard" data-category="tea">
-  <div class="menu-card">
-    <h2>TEA</h2>
-<div class="menu-header">
-      <span></span>
-      <span>S</span>
-      <span>M</span>
-    </div>  
-   {{TEA}}
-  
-  </div>
-</section>
-
-<!-- SMOOTHIE -->
-<section class="MenuCard" data-category="smoothie">
-  <div class="menu-card">
-    <h2>SMOOTHIES</h2>
-<div class="menu-header">
-      <span></span>
-      <span>M</span>
-      <span>L</span>
-    </div>   {{SMOOTHIES}}
-  </div>
-</section>
-
-<section class="MenuCard" data-category="frappuccino">
-  <div class="menu-card">
-    <h2>FRAPPUCCINO</h2>
-<div class="menu-header">
-      <span></span>
-      <span>M</span>
-      <span>L</span>
-    </div>    
-   {{FRAPPUCCINO}}
-  
-  </div>
-</section>
-
-<!-- MILKSHAKE -->
-<section class="MenuCard" data-category="milkshake">
-  <div class="menu-card">
-    <h2>MILKSHAKE</h2>
-<div class="menu-header">
-      <span></span>
-      <span>M</span>
-      <span>L</span>
-    </div>  
-   {{MILKSHAKE}}
-  
-  </div>
-</section>
-
-<!-- FRESH VIVE -->
-<section class="MenuCard" data-category="freshvive">
-  <div class="menu-card">
-    <h2>FRESH VIVE</h2>
-<div class="menu-header">
-      <span></span>
-      <span>M</span>
-      <span>L</span>
-    </div>   
-   {{FRESH_VIVE}}
-  
-  </div>
-</section>
-
-<!-- FRESH JUICE -->
-<section class="MenuCard" data-category="freshjuice">
-  <div class="menu-card">
-    <h2>FRESH JUICE</h2>
-<div class="menu-header">
-      <span></span>
-      <span>M</span>
-      <span>L</span>
-    </div>    
-   {{FRESH_JUICE}}
-  </div>
-</section>
-
-<!-- ICED TEA -->
-<section class="MenuCard" data-category="icetea">
-  <div class="menu-card">
-    <h2>ICED TEA</h2>
-<div class="menu-header">
-      <span></span>
-      <span>M</span>
-      <span>L</span>
-    </div>    
-   {{ICED_TEA}}
-  </div>
-</section>
-
-<!-- ICED COFFEE -->
-<section class="MenuCard" data-category="icecoffee">
-  <div class="menu-card">
-    <h2>ICED COFFEE</h2>
-<div class="menu-header">
-      <span></span>
-      <span>M</span>
-      <span>L</span>
-    </div>  
-  
-   {{ICED_COFFEE}}
-  </div>
-</section>
-
-
 <script>
-function toggleDarkMode() {
-    document.body.classList.toggle("dark");
-}
-const links = document.querySelectorAll("nav a");
+/* Scroll shadow for header */
+const header = document.querySelector("header");
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+        header.classList.add("shrink");
+    } else {
+        header.classList.remove("shrink");
+    }
+});
+
+/* Menu Tabs */
+const links = document.querySelectorAll(".menu-tabs a");
 const cards = document.querySelectorAll(".MenuCard");
 
 function showCategory(category) {
@@ -420,7 +474,6 @@ links.forEach(link => {
         showCategory(link.dataset.filter);
     });
 });
-
 
 showCategory("espresso");
 </script>

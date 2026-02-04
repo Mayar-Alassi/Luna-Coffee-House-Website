@@ -6,6 +6,13 @@
   "email": "info@lunacoffeehouse.com",
   "phone": "+962XXXXXXXXX",
   "instagram": "@lunecoffeehouse",
+  
+  
+  "address": "Drive-thru, King Abdullah II St, Amman",
+  "hours": "7:00 AM – 1:00 AM\nOpen All Days",
+  "video": "/vi.mp4",
+  "maplink": "https://maps.google.com/?q=Amman+King+Abdullah+II+St",
+
   "ESPRESSOS": {
     "sizes": [
       "S",
@@ -587,3 +594,5 @@
     "phone": "+962XXXXXXXXX"
   }
 }
+
+
