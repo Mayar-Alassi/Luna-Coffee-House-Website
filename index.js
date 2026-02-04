@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -13,9 +15,9 @@ app.use(bodyParser.json());
 
 // بيانات الأدمن
 const adminUser = {
-    username: 'admin',
-    password: '12345',
-    token: 'supersecrettoken123'
+    username: process.env.ADMIN_USERNAME,
+    password: process.env.ADMIN_PASSWORD,
+    token: process.env.ADMIN_TOKEN
 };
 
 // ===== HELPER FUNCTION لبناء المينيو =====
