@@ -27,19 +27,14 @@ textarea { resize: vertical; }
 
 <form id="adminForm">
 
-  <!-- Hero Section -->
   <div class="card">
     <h3>Main Page Content</h3>
     <div class="mb-3">
       <label for="lunaText">LUNA Text:</label>
       <textarea class="form-control" id="lunaText" rows="3"></textarea>
     </div>
-    <div class="mb-3">
-      <label for="storyText">Story Text:</label>
-      <textarea class="form-control" id="storyText" rows="4"></textarea>
-    </div>
+    
 
-    <!-- Story Images Upload -->
     <div class="mb-3">
       <label>Story Images:</label>
       <div id="storyImagesDropZone" class="drop-zone">Drag & Drop images here or click to select files</div>
@@ -47,7 +42,6 @@ textarea { resize: vertical; }
     </div>
   </div>
 
-  <!-- Contact Section -->
   <div class="card">
     <h3>Contact Info</h3>
     <div class="mb-3">
@@ -64,14 +58,12 @@ textarea { resize: vertical; }
     </div>
   </div>
 
-  <!-- Menu Section -->
   <div class="card">
     <h3>Menu Editor</h3>
     <div id="menuContainer"></div>
     <button type="button" class="btn btn-success mt-2" onclick="addMenuCategory()">Add Category</button>
   </div>
 
-  <!-- Visit / Location -->
   <div class="card">
     <h3>Visit / Location</h3>
     <div class="mb-3">
@@ -83,7 +75,6 @@ textarea { resize: vertical; }
       <input type="text" class="form-control" id="hours">
     </div>
 
-    <!-- Hero Video Upload -->
     <div class="mb-3">
       <label>Hero Video:</label>
       <div id="videoDropZone" class="drop-zone">Drag & Drop video here or click to select file</div>
@@ -108,7 +99,6 @@ let menuData = {};
 let storyImagesFiles = [];
 let heroVideoFile = null;
 
-// --- Drag & Drop Helper ---
 function setupDropZone(dropZone, type, previewContainer){
   dropZone.addEventListener('dragover', e=>{ e.preventDefault(); dropZone.classList.add('dragover'); });
   dropZone.addEventListener('dragleave', e=>{ e.preventDefault(); dropZone.classList.remove('dragover'); });
@@ -148,11 +138,9 @@ function handleFiles(files, type, previewContainer){
   });
 }
 
-// Initialize drop zones
 setupDropZone(document.getElementById('storyImagesDropZone'),'image',document.getElementById('storyImagesPreview'));
 setupDropZone(document.getElementById('videoDropZone'),'video',document.getElementById('videoPreview'));
 
-// --- Menu Functions ---
 function renderMenu() {
   const container = document.getElementById('menuContainer');
   container.innerHTML = '';
@@ -189,7 +177,6 @@ function addMenuCategory() {
 function deleteCategory(name){ if(confirm('Delete category '+name+'?')){ delete menuData[name]; renderMenu(); } }
 function deleteMenuItem(cat,index){ menuData[cat].items.splice(index,1); renderMenu(); }
 
-// --- Load Data ---
 window.addEventListener('DOMContentLoaded', async ()=>{
   const res = await fetch('/content');
   contentData = await res.json();
@@ -204,17 +191,14 @@ window.addEventListener('DOMContentLoaded', async ()=>{
   document.getElementById('video').value = contentData.video || '';
   document.getElementById('mapLink').value = contentData.maplink || '';
 
-  // Initialize menuData
   ['ESPRESSOS','SPECIALTY','CLASSIC','TEA','SMOOTHIES','FRAPPUCCINO','MILKSHAKE','FRESH_VIVE','FRESH_JUICE','ICED_TEA','ICED_COFFEE'].forEach(cat=>{
     if(contentData[cat]) menuData[cat]=contentData[cat];
   });
   renderMenu();
 });
 
-// --- Save Form ---
 document.getElementById('adminForm').addEventListener('submit', async e=>{
   e.preventDefault();
-  // Collect story images as base64 URLs
   const storyImagesBase64 = storyImagesFiles.map(file=>URL.createObjectURL(file));
   contentData.lunaText = document.getElementById('lunaText').value;
   contentData.story = { text: document.getElementById('storyText').value };
@@ -229,7 +213,6 @@ document.getElementById('adminForm').addEventListener('submit', async e=>{
   contentData.video = heroVideoFile ? URL.createObjectURL(heroVideoFile) : document.getElementById('video').value;
   contentData.maplink = document.getElementById('mapLink').value;
 
-  // Save menu
   for(const cat in menuData) contentData[cat]=menuData[cat];
 
   try{

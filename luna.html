@@ -41,7 +41,6 @@ body{
 
 .container-max{max-width:1100px;margin:auto;padding:0 24px}
 
-/* ===== HEADER ===== */
 header {
     position: sticky;
     top: 0;
@@ -69,7 +68,6 @@ header.shrink nav {
     padding: 12px 0;
 }
 
-/* ===== LOGO ===== */
 .logo {
     font-family: 'Cinzel', serif;
     font-size: 26px;
@@ -82,13 +80,11 @@ header.shrink .logo {
     font-size: 20px;
     letter-spacing: 4px;
 }
-/* ===== MICRO ANIMATION LOGO ===== */
 .logo:hover {
     transform: translateY(-4px) scale(1.05);
     text-shadow: 0 0 8px rgba(226,199,178,0.7);
 }
 
-/* ===== NAV LINKS ===== */
 .nav-links {
     display: flex;
     gap: 30px;
@@ -124,7 +120,6 @@ nav a:hover::after {
     width: 60%;
 }
 
-/* ===== HERO ===== */
 .hero{
     display:grid;grid-template-columns:1.1fr .9fr;
     gap:40px;padding:110px 0 80px;align-items:center
@@ -162,7 +157,6 @@ nav a:hover::after {
     border-radius:12px;filter:sepia(10%)
 }
 
-/* ===== STORY ===== */
 .section{padding:90px 0}
 .section-title{font-family:'Cinzel',serif;font-size:40px;letter-spacing:2px;margin-bottom:16px}
 .section-subtitle{text-transform:uppercase;letter-spacing:4px;font-size:12px;color:var(--muted);margin-bottom:6px}
@@ -190,7 +184,6 @@ nav a:hover::after {
     box-shadow:0 24px 50px rgba(58,44,36,.3)
 }
 
-/* ===== VISIT / LOCATION ===== */
 .visit-grid{
     display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:28px;margin-top:32px
@@ -249,7 +242,6 @@ nav a:hover::after {
     width:60%;
 }
 
-/* ===== CONTACT ===== */
 .contact-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -273,20 +265,17 @@ nav a:hover::after {
     font-size:18px;color:var(--ink);text-decoration:none
 }
 
-/* ===== FOOTER ===== */
 footer{
     text-align:center;padding:40px 10px 50px;
     border-top:1px solid rgba(210,180,156,.4);
     color:rgba(90,70,58,.8)
 }
 
-/* ===== REVEAL ===== */
 .reveal{opacity:0;transform:translateY(16px);animation:reveal 1.2s ease forwards}
 .reveal.delay-1{animation-delay:.2s}
 .reveal.delay-2{animation-delay:.4s}
 @keyframes reveal{to{opacity:1;transform:translateY(0)}}
 
-/* ===== RESPONSIVE ===== */
 @media(max-width:900px){
     .hero,.story-grid{grid-template-columns:1fr}
     .hero-frame video{height:420px}
@@ -340,7 +329,7 @@ for espresso, tea, and slow conversations.
 <img src="{{lunaImage1}}">
 <img src="{{lunaImage2}}">
 <img src="{{lunaImage3}}">
-<img src="/llllll.jpeg">
+<img src="{{lunaImage4}}">
 </div>
 </div>
 </section>

@@ -8,13 +8,11 @@ const multer = require('multer');
 const app = express();
 const PORT = 3000;
 
-// السماح بالملفات الثابتة في مجلد public
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-// إعدادات Multer للرفع في مجلد public/uploads
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, 'public/uploads');
@@ -27,43 +25,28 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 
-Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public')); // يخلي public folder متاح للزوار
-
+app.use(express.static('public')); 
 //
 app.get('/content', (req, res) => {
   const data = JSON.parse(fs.readFileSync('content.json', 'utf-8'));
   res.json(data);
 });
 
-// Endpoint لتحديث content.json
-app.post('/update-content', (req, res) => {
-  const token = req.body.token;
-  if(token !== 'supersecrettoken123') return res.status(403).send('Unauthorized');
 
-  const data = { ...req.body };
-  delete data.token; // نزيل التوكن قبل الحفظ
-  fs.writeFileSync('content.json', JSON.stringify(data, null, 2));
-  res.send('Content updated successfully!');
-});
 
-// Endpoint لرفع الصور والفيديو
 app.post('/upload', upload.single('file'), (req, res) => {
   if(!req.file) return res.status(400).send('No file uploaded');
-  // نرسل الرابط المباشر للملف الجديد
   res.json({ url: `/uploads/${req.file.filename}` });
 });
 
-// بيانات الأدمن
 const adminUser = {
     username: process.env.ADMIN_USERNAME,
     password: process.env.ADMIN_PASSWORD,
     token: process.env.ADMIN_TOKEN
 };
 
-// ===== HELPER FUNCTION لبناء المينيو =====
 function buildMenuItems(categoryData) {
     const items = categoryData.items || [];
     return items.map(item => `
@@ -76,7 +59,6 @@ function buildMenuItems(categoryData) {
     `).join('');
 }
 
-// ===== الصفحة الرئيسية / =====
 app.get('/', (req, res) => {
     const content = JSON.parse(fs.readFileSync(path.join(__dirname, 'content.json'), 'utf-8'));
     let html = fs.readFileSync(path.join(__dirname, 'luna.html'), 'utf-8');
@@ -91,11 +73,13 @@ app.get('/', (req, res) => {
     .replace('{{lunaImage1}}', content.lunaImage1 || '')
     .replace('{{lunaImage2}}', content.lunaImage2 || '')
     .replace('{{lunaImage3}}', content.lunaImage3 || '')
+    .replace('{{lunaImage4}}', content.lunaImage4 || '')
+
     .replace(/{{EMAIL}}/g, content.email || '')
     .replace(/{{PHONE}}/g, content.phone || '')
     .replace(/{{INSTAGRAM}}/g, content.instagram || '')
     .replace(/{{INSTAGRAM_LINK}}/g, instagramLink || '#')
-    // الحقول الجديدة
+   
     .replace('{{address}}', content.address || '')
     .replace('{{hours}}', content.hours || '')
     .replace('{{video}}', content.video || '')
@@ -104,13 +88,11 @@ app.get('/', (req, res) => {
 });
 
 
-// ===== endpoint لجلب محتوى luna (للاستخدام من admin) =====
 app.get('/luna', (req, res) => {
     const content = JSON.parse(fs.readFileSync('content.json', 'utf-8'));
     res.json(content);
 });
 
-// ===== صفحة المينيو =====
 app.get('/menu', (req, res) => {
     const content = JSON.parse(fs.readFileSync('content.json', 'utf-8'));
     let html = fs.readFileSync('menu.html', 'utf-8');
@@ -125,12 +107,10 @@ app.get('/menu', (req, res) => {
     res.send(html);
 });
 
-// ===== صفحة login =====
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'login.html'));
 });
 
-// التحقق من login
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
     console.log('Login attempt:', { username, hasPassword: !!password });
@@ -142,7 +122,6 @@ app.post('/login', (req, res) => {
     }
 });
 
-// ===== صفحة الأدمن =====
 app.get('/admin', (req, res) => {
     const token = req.query.token;
     if(!token){
@@ -155,18 +134,14 @@ app.get('/admin', (req, res) => {
     }
 });
 
-// ===== تعديل المحتوى من الأدمن (POST) =====
 app.post('/update-content', (req, res) => {
     const token = req.body.token;
     if(token !== adminUser.token){
         return res.send('غير مصرح لك!');
     }
 
-    // قراءة المحتوى الحالي
     const content = JSON.parse(fs.readFileSync('content.json', 'utf-8'));
 
-    // تحديث الصفحة الرئيسية
-   // تحديث الصفحة الرئيسية - حقول جديدة
 if(req.body.address) content.address = req.body.address;
 if(req.body.hours) content.hours = req.body.hours;
 if(req.body.video) content.video = req.body.video;
@@ -179,6 +154,9 @@ if(req.body.mapLink) content.mapLink = req.body.mapLink;
         if(cleanedImages[0]) content.lunaImage1 = cleanedImages[0];
         if(cleanedImages[1]) content.lunaImage2 = cleanedImages[1];
         if(cleanedImages[2]) content.lunaImage3 = cleanedImages[2];
+        if(cleanedImages[3]) content.lunaImage4 = cleanedImages[3];
+        if(cleanedImages[3]) content.lunaImage4 = cleanedImages[3];
+
     }
 
     if(req.body.email) content.email = req.body.email;
@@ -200,21 +178,19 @@ if(req.body.mapLink) content.mapLink = req.body.mapLink;
         if(req.body.instagram) content.contact.instagram = req.body.instagram;
     }
 
-    // تحديث المينيو (لو موجود)
     if(req.body.menuUpdates){
         Object.keys(req.body.menuUpdates).forEach(cat => {
             content[cat] = req.body.menuUpdates[cat];
         });
     }
 
-    // كتابة التغييرات في JSON
     fs.writeFileSync('content.json', JSON.stringify(content, null, 2));
 
     res.send('تم تحديث المحتوى بنجاح!');
 });
 
-// ===== تشغيل السيرفر =====
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
+
 

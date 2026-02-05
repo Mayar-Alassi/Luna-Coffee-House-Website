@@ -1,8 +1,9 @@
 {
   "lunaText": "LUNA Coffee House is a calm and welcoming café designed for people who appreciate quality coffee and a peaceful atmosphere. Our mission is to offer the finest coffee experience, blending traditional flavors with a modern, cozy ambiance.",
-  "lunaImage1": "/uploads/ii.jpeg",
-  "lunaImage2": "/uploads/yyy.jpeg",
-  "lunaImage3": "/uploads/sss.jpeg",
+  "lunaImage1": "/ii.jpeg",
+  "lunaImage2": "/yyy.jpeg",
+  "lunaImage3": "/sss.jpeg",
+  "lunaImage4": "/pic.jpeg",
   "story": {
     "text": "LUNA Coffee House is a calm and welcoming café designed for people who appreciate quality coffee and a peaceful atmosphere. Our mission is to offer the finest coffee experience, blending traditional flavors with a modern, cozy ambiance."
   },
@@ -11,7 +12,7 @@
   "instagram": "@lunacoffeehouse",
   "address": "Drive-thru, King Abdullah II St, Amman",
   "hours": "7:00 AM – 1:00 AM\nOpen All Days",
-  "video": "/uploads/vi.mp4",
+  "video": "/vi.mp4",
   "maplink": "https://maps.google.com/?q=Amman+King+Abdullah+II+St",
   
   "ESPRESSOS": {
