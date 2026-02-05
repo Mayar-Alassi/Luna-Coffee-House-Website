@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const fs = require('fs');
-
+const multer = require('multer');
 const app = express();
 const PORT = 3000;
 
@@ -12,6 +12,49 @@ const PORT = 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
+// إعدادات Multer للرفع في مجلد public/uploads
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'public/uploads');
+  },
+  filename: function(req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  }
+});
+const upload = multer({ storage });
+
+
+Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public')); // يخلي public folder متاح للزوار
+
+//
+app.get('/content', (req, res) => {
+  const data = JSON.parse(fs.readFileSync('content.json', 'utf-8'));
+  res.json(data);
+});
+
+// Endpoint لتحديث content.json
+app.post('/update-content', (req, res) => {
+  const token = req.body.token;
+  if(token !== 'supersecrettoken123') return res.status(403).send('Unauthorized');
+
+  const data = { ...req.body };
+  delete data.token; // نزيل التوكن قبل الحفظ
+  fs.writeFileSync('content.json', JSON.stringify(data, null, 2));
+  res.send('Content updated successfully!');
+});
+
+// Endpoint لرفع الصور والفيديو
+app.post('/upload', upload.single('file'), (req, res) => {
+  if(!req.file) return res.status(400).send('No file uploaded');
+  // نرسل الرابط المباشر للملف الجديد
+  res.json({ url: `/uploads/${req.file.filename}` });
+});
 
 // بيانات الأدمن
 const adminUser = {

@@ -13,128 +13,238 @@ h1 { text-align: center; margin-bottom: 30px; }
 .card { padding: 20px; margin-bottom: 20px; }
 label { font-weight: bold; }
 textarea { resize: vertical; }
+.menu-item { display: flex; gap: 10px; margin-bottom: 10px; }
+.menu-item input { flex: 1; }
+.drop-zone { border: 2px dashed #ccc; padding: 20px; text-align:center; cursor:pointer; background:#fff3e0; }
+.drop-zone.dragover { background:#ffe0b2; }
+.preview-img { width:120px; height:auto; border:1px solid #ccc; padding:2px; margin-right:5px; margin-bottom:5px; }
+#videoPreview { width:320px; display:block; margin-top:10px; }
 </style>
 </head>
-<body><div class="page-wrap">
-
+<body>
+<div class="page-wrap">
 <h1>Admin Panel - LUNA Coffee House</h1>
 
 <form id="adminForm">
 
-    <div class="card">
-        <h3>Main Page Content</h3>
-        <div class="mb-3">
-            <label for="lunaText">LUNA Text:</label>
-            <textarea class="form-control" id="lunaText" name="lunaText" rows="3"></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="storyText">Story Text:</label>
-            <textarea class="form-control" id="storyText" name="storyText" rows="4"></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="storyImages">Story Images (comma separated URLs):</label>
-            <input type="text" class="form-control" id="storyImages" name="storyImages">
-        </div>
+  <!-- Hero Section -->
+  <div class="card">
+    <h3>Main Page Content</h3>
+    <div class="mb-3">
+      <label for="lunaText">LUNA Text:</label>
+      <textarea class="form-control" id="lunaText" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="storyText">Story Text:</label>
+      <textarea class="form-control" id="storyText" rows="4"></textarea>
     </div>
 
-    <div class="card">
-        <h3>Contact Info</h3>
-        <div class="mb-3">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" name="email">
-        </div>
-        <div class="mb-3">
-            <label for="phone">Phone:</label>
-            <input type="text" class="form-control" id="phone" name="phone">
-        </div>
-        <div class="mb-3">
-            <label for="instagram">Instagram:</label>
-            <input type="text" class="form-control" id="instagram" name="instagram">
-        </div>
+    <!-- Story Images Upload -->
+    <div class="mb-3">
+      <label>Story Images:</label>
+      <div id="storyImagesDropZone" class="drop-zone">Drag & Drop images here or click to select files</div>
+      <div id="storyImagesPreview" class="d-flex flex-wrap mt-2"></div>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="card">
+    <h3>Contact Info</h3>
+    <div class="mb-3">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email">
+    </div>
+    <div class="mb-3">
+      <label for="phone">Phone:</label>
+      <input type="text" class="form-control" id="phone">
+    </div>
+    <div class="mb-3">
+      <label for="instagram">Instagram:</label>
+      <input type="text" class="form-control" id="instagram">
+    </div>
+  </div>
+
+  <!-- Menu Section -->
+  <div class="card">
+    <h3>Menu Editor</h3>
+    <div id="menuContainer"></div>
+    <button type="button" class="btn btn-success mt-2" onclick="addMenuCategory()">Add Category</button>
+  </div>
+
+  <!-- Visit / Location -->
+  <div class="card">
+    <h3>Visit / Location</h3>
+    <div class="mb-3">
+      <label for="address">Address:</label>
+      <input type="text" class="form-control" id="address">
+    </div>
+    <div class="mb-3">
+      <label for="hours">Opening Hours:</label>
+      <input type="text" class="form-control" id="hours">
     </div>
 
-    <div class="card">
-        <h3>Menu Updates (JSON format)</h3>
-        <p>Example format: <code>{"ESPRESSOS": {"items":[{"name":"Single Espresso","prices":["$2.25","-"]}]}}</code></p>
-        <div class="mb-3">
-            <label for="menuUpdates">Menu Updates:</label>
-            <textarea class="form-control" id="menuUpdates" name="menuUpdates" rows="6"></textarea>
-        </div>
+    <!-- Hero Video Upload -->
+    <div class="mb-3">
+      <label>Hero Video:</label>
+      <div id="videoDropZone" class="drop-zone">Drag & Drop video here or click to select file</div>
+      <video id="videoPreview" controls></video>
     </div>
 
-    <input type="hidden" id="token" name="token" value="supersecrettoken123">
+    <div class="mb-3">
+      <label for="mapLink">Map Link:</label>
+      <input type="text" class="form-control" id="mapLink">
+    </div>
+  </div>
 
-    <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+  <input type="hidden" id="token" value="supersecrettoken123">
+  <button type="submit" class="btn btn-primary w-100">Save Changes</button>
 </form>
 
 <div id="response" class="mt-3"></div>
- <div class="card">
-    <h3>Visit / Location</h3>
-    <div class="mb-3">
-        <label for="address">Address:</label>
-        <input type="text" class="form-control" id="address" name="address">
-    </div>
-    <div class="mb-3">
-        <label for="hours">Opening Hours:</label>
-        <input type="text" class="form-control" id="hours" name="hours" placeholder="e.g. 7:00 AM – 1:00 AM, Open All Days">
-    </div>
-    <div class="mb-3">
-        <label for="video">Hero Video (MP4 URL):</label>
-        <input type="text" class="form-control" id="video" name="video" placeholder="/video.mp4">
-    </div>
-    <div class="mb-3">
-        <label for="mapLink">Map Link:</label>
-        <input type="text" class="form-control" id="mapLink" name="mapLink" placeholder="https://maps.app.goo.gl/...">
-    </div>
-</div>
+
 <script>
-const form = document.getElementById('adminForm');
-form.addEventListener('submit', async (e) => {
+let contentData = {};
+let menuData = {};
+let storyImagesFiles = [];
+let heroVideoFile = null;
+
+// --- Drag & Drop Helper ---
+function setupDropZone(dropZone, type, previewContainer){
+  dropZone.addEventListener('dragover', e=>{ e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', e=>{ e.preventDefault(); dropZone.classList.remove('dragover'); });
+  dropZone.addEventListener('drop', e=>{
     e.preventDefault();
+    dropZone.classList.remove('dragover');
+    handleFiles(e.dataTransfer.files, type, previewContainer);
+  });
+  dropZone.addEventListener('click', ()=>{
+    const input = document.createElement('input');
+    input.type='file';
+    if(type==='image') input.multiple=true;
+    else input.accept='video/*';
+    input.onchange = ()=>handleFiles(input.files, type, previewContainer);
+    input.click();
+  });
+}
 
-  
-    const storyImagesRaw = document.getElementById('storyImages').value.trim();
-    const storyImages = storyImagesRaw
-        ? storyImagesRaw.split(',').map(s => s.trim()).filter(Boolean)
-        : null;
-
-    const data = {
-        token: document.getElementById('token').value,
-        lunaText: document.getElementById('lunaText').value,
-        storyText: document.getElementById('storyText').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        instagram: document.getElementById('instagram').value,
-        menuUpdates: {}
-    };
-    if (storyImages) {
-        data.storyImages = storyImages;
+function handleFiles(files, type, previewContainer){
+  Array.from(files).forEach(file=>{
+    const reader = new FileReader();
+    reader.onload = e=>{
+      if(type==='image'){
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.className='preview-img';
+        previewContainer.appendChild(img);
+        storyImagesFiles.push(file);
+      } else if(type==='video'){
+        const video = document.getElementById('videoPreview');
+        video.src = e.target.result;
+        video.style.display='block';
+        heroVideoFile = file;
+      }
     }
+    reader.readAsDataURL(file);
+  });
+}
 
-    try {
-        if(document.getElementById('menuUpdates').value){
-            data.menuUpdates = JSON.parse(document.getElementById('menuUpdates').value);
-        }
+// Initialize drop zones
+setupDropZone(document.getElementById('storyImagesDropZone'),'image',document.getElementById('storyImagesPreview'));
+setupDropZone(document.getElementById('videoDropZone'),'video',document.getElementById('videoPreview'));
 
-        const res = await fetch('/update-content', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
-        });
+// --- Menu Functions ---
+function renderMenu() {
+  const container = document.getElementById('menuContainer');
+  container.innerHTML = '';
+  for (const category in menuData) {
+    const catDiv = document.createElement('div');
+    catDiv.classList.add('card','mb-2','p-2');
+    catDiv.innerHTML = `<h5>${category} <button type="button" class="btn btn-danger btn-sm float-end" onclick="deleteCategory('${category}')">Delete Category</button></h5>`;
+    const itemsDiv = document.createElement('div');
+    menuData[category].items.forEach((item,index)=>{
+      const itemDiv = document.createElement('div');
+      itemDiv.classList.add('menu-item');
+      itemDiv.innerHTML = `
+        <input placeholder="Item Name" value="${item.name}" oninput="menuData['${category}'].items[${index}].name=this.value">
+        <input placeholder="Price 1" value="${item.prices[0]}" oninput="menuData['${category}'].items[${index}].prices[0]=this.value">
+        <input placeholder="Price 2" value="${item.prices[1]}" oninput="menuData['${category}'].items[${index}].prices[1]=this.value">
+        <button type="button" class="btn btn-danger btn-sm" onclick="deleteMenuItem('${category}',${index})">Delete</button>
+      `;
+      itemsDiv.appendChild(itemDiv);
+    });
+    const addBtn = document.createElement('button');
+    addBtn.type='button';
+    addBtn.className='btn btn-success btn-sm mt-2';
+    addBtn.textContent='Add Item';
+    addBtn.onclick = ()=>{ menuData[category].items.push({name:'',prices:['','']}); renderMenu(); }
+    catDiv.appendChild(itemsDiv);
+    catDiv.appendChild(addBtn);
+    container.appendChild(catDiv);
+  }
+}
+function addMenuCategory() {
+  const name = prompt('Enter new category name:');
+  if(name && !menuData[name]) { menuData[name] = { items: [] }; renderMenu(); }
+}
+function deleteCategory(name){ if(confirm('Delete category '+name+'?')){ delete menuData[name]; renderMenu(); } }
+function deleteMenuItem(cat,index){ menuData[cat].items.splice(index,1); renderMenu(); }
 
-        const text = await res.text();
-        document.getElementById('response').innerText = text;
-    } catch (err) {
-        document.getElementById('response').innerText = 'Error: ' + err.message;
-    }
+// --- Load Data ---
+window.addEventListener('DOMContentLoaded', async ()=>{
+  const res = await fetch('/content');
+  contentData = await res.json();
+
+  document.getElementById('lunaText').value = contentData.lunaText || '';
+  document.getElementById('storyText').value = contentData.story?.text || '';
+  document.getElementById('email').value = contentData.email || '';
+  document.getElementById('phone').value = contentData.phone || '';
+  document.getElementById('instagram').value = contentData.instagram || '';
+  document.getElementById('address').value = contentData.address || '';
+  document.getElementById('hours').value = contentData.hours || '';
+  document.getElementById('video').value = contentData.video || '';
+  document.getElementById('mapLink').value = contentData.maplink || '';
+
+  // Initialize menuData
+  ['ESPRESSOS','SPECIALTY','CLASSIC','TEA','SMOOTHIES','FRAPPUCCINO','MILKSHAKE','FRESH_VIVE','FRESH_JUICE','ICED_TEA','ICED_COFFEE'].forEach(cat=>{
+    if(contentData[cat]) menuData[cat]=contentData[cat];
+  });
+  renderMenu();
 });
 
-window.addEventListener('DOMContentLoaded', async () => {
-    const res = await fetch('/menu'); // نستخدم نفس endpoint لجلب content.json
-    const contentRes = await fetch('/luna'); // لجلب النصوص والصور
+// --- Save Form ---
+document.getElementById('adminForm').addEventListener('submit', async e=>{
+  e.preventDefault();
+  // Collect story images as base64 URLs
+  const storyImagesBase64 = storyImagesFiles.map(file=>URL.createObjectURL(file));
+  contentData.lunaText = document.getElementById('lunaText').value;
+  contentData.story = { text: document.getElementById('storyText').value };
+  contentData.lunaImage1 = storyImagesBase64[0]||'';
+  contentData.lunaImage2 = storyImagesBase64[1]||'';
+  contentData.lunaImage3 = storyImagesBase64[2]||'';
+  contentData.email = document.getElementById('email').value;
+  contentData.phone = document.getElementById('phone').value;
+  contentData.instagram = document.getElementById('instagram').value;
+  contentData.address = document.getElementById('address').value;
+  contentData.hours = document.getElementById('hours').value;
+  contentData.video = heroVideoFile ? URL.createObjectURL(heroVideoFile) : document.getElementById('video').value;
+  contentData.maplink = document.getElementById('mapLink').value;
+
+  // Save menu
+  for(const cat in menuData) contentData[cat]=menuData[cat];
+
+  try{
+    const res = await fetch('/update-content',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({token:document.getElementById('token').value, ...contentData})
+    });
+    const text = await res.text();
+    document.getElementById('response').innerText = text;
+  }catch(err){
+    document.getElementById('response').innerText = 'Error: '+err.message;
+  }
 });
 </script>
-
-</div></body>
+</div>
+</body>
 </html>
-
